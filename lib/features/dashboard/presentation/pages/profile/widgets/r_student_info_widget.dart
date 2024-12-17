@@ -17,8 +17,11 @@ class RStudentInfoWidget extends StatelessWidget {
         return switch (state) {
           StudentInfoInitial() => const CircularProgressIndicator.adaptive(),
           StudentInfoLoading() => const Expanded(
-              child: Center(
-                child: CircularProgressIndicator.adaptive(),
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Center(
+                  child: CircularProgressIndicator.adaptive(),
+                ),
               ),
             ),
           StudentInfoError() => Expanded(

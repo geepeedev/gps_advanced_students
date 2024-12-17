@@ -1,6 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gps_advanced_students/core/Error/auth_failure.dart';
 import 'package:gps_advanced_students/core/Success/auth_success.dart';
@@ -112,10 +112,5 @@ class AuthenticationCubit extends Cubit<SigninState> {
     }
   }
 
-  @override
-  void onChange(Change<SigninState> change) {
-    debugPrint(change.currentState.toString());
-    debugPrint(change.toString());
-    super.onChange(change);
-  }
+ 
 }

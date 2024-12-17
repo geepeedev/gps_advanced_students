@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:gps_advanced_students/core/common/components/text.dart';
 import 'package:gps_advanced_students/core/constants/colors.dart';
-import 'package:gps_advanced_students/features/dashboard/presentation/pages/profile/widgets/student_info_widget.dart';
+import 'package:gps_advanced_students/features/dashboard/presentation/pages/profile/widgets/r_student_info_widget.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 class StudentProfileWidget extends StatefulWidget {
@@ -19,16 +19,18 @@ class _StudentProfileWidgetState extends State<StudentProfileWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 700,
+      height: 550,
       padding: const EdgeInsets.only(
         top: 24,
         bottom: 6,
         right: 6,
         left: 6,
       ),
-      decoration: const BoxDecoration(
-        color: Colors.white10,
-        borderRadius: BorderRadius.all(
+      decoration: BoxDecoration(
+        // color: Colors.white10,
+        color: Colors.black,
+        border: Border.all(color: GpColors.primary),
+        borderRadius: const BorderRadius.all(
           Radius.circular(6),
         ),
       ),

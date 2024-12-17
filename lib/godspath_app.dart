@@ -54,10 +54,11 @@ class GodspathApp extends StatelessWidget {
             ),
           ),
           BlocProvider(
-            create: (context) => UserCubit(
-              context.read<UserRepository>(),
-            ),
-          ),
+              create: (context) => UserCubit(
+                    context.read<UserRepository>(),
+                  )
+              // UserRepository(authDatasource: AuthDatasource())),
+              ),
           BlocProvider(
             create: (context) => StudentInfoCubit(
               dashboardRepositoryImpl: DashboardRepositoryImpl(
@@ -69,7 +70,10 @@ class GodspathApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: BlocListener<UserCubit, UserState>(
+          home: BlocConsumer<UserCubit, UserState>(
+            builder: (context, state) {
+              return const LoginView();
+            },
             listener: (context, state) {
               final user = state.user;
               if (user != null) {
@@ -85,9 +89,6 @@ class GodspathApp extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const LoginView()),
                     (Route<dynamic> route) => false);
               }
-              // user != null
-              //     ? context.read<StudentInfoCubit>().initStudentprofile(user)
-              //     : null;
             },
           ),
         ),

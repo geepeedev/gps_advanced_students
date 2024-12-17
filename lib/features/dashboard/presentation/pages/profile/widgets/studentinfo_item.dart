@@ -14,22 +14,24 @@ class StudentInfoItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card.filled(
-      color: GpColors.background.withOpacity(0.6),
+      color: Colors.white.withOpacity(0.1),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GpText.body(
+            GpText.headline(
               fontWeight: FontWeight.normal,
               text: itemLabel,
-              textColor: GpColors.textDark,
+              textColor: GpColors.onPrimary,
+              fontsize: 18,
             ),
-            GpText.body(
-              fontWeight: FontWeight.w900,
+            GpText.headline(
+              fontWeight: FontWeight.normal,
               text: jsonData,
-              textColor: GpColors.primary,
+              textColor: GpColors.textlight,
+              fontsize: 18,
             ),
           ],
         ),
