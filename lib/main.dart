@@ -1,20 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:gps_advanced_students/features/dashboard/data/source/local_data_source.dart';
+// import 'package:gps_advanced_students/features/dashboard/data/source/local_data_source.dart';
 import 'package:gps_advanced_students/firebase_options.dart';
 import 'package:gps_advanced_students/godspath_app.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:window_manager/window_manager.dart';
 // import 'package:gps_advanced_students/core/common/components/text.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Supabase.initialize(
-  //   url: 'https://xyzcompany.supabase.co',
-  //   anonKey: 'public-anon-key',
-  // );
-  LocalDataSource(preferencesAsync: SharedPreferencesAsync());
+
+  // LocalDataSource(preferencesAsync: SharedPreferencesAsync());
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

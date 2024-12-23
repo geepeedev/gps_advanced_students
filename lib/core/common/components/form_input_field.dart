@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gps_advanced_students/core/common/components/text.dart';
 import 'package:gps_advanced_students/core/constants/colors.dart';
@@ -16,6 +17,11 @@ class GpFormInputField extends StatelessWidget {
     this.isObsecureText = false,
     this.errorWidget,
     this.keyboardType,
+    this.initialValue,
+    this.inputFormatter,
+    this.readOnly = false,
+    this.maxLines,
+    this.validator,
   });
 
   final String textfieldLabel;
@@ -27,6 +33,11 @@ class GpFormInputField extends StatelessWidget {
   final bool isObsecureText;
   final Widget? errorWidget;
   final TextInputType? keyboardType;
+  final String? initialValue;
+  final List<TextInputFormatter>? inputFormatter;
+  final bool readOnly;
+  final int? maxLines;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +55,12 @@ class GpFormInputField extends StatelessWidget {
         SizedBox(
           width: 400,
           child: TextFormField(
-            
+            validator: validator,
+            readOnly: readOnly,
+            maxLines: maxLines,
+            style: GoogleFonts.poppins(fontWeight: FontWeight.w500),
+            inputFormatters: inputFormatter,
+            initialValue: initialValue,
             keyboardType: keyboardType,
             obscureText: isObsecureText,
             onChanged: onChanged,

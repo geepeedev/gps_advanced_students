@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:gps_advanced_students/core/common/components/text.dart';
 import 'package:gps_advanced_students/core/constants/colors.dart';
+import 'package:gps_advanced_students/features/dashboard/blocs/profile_cubits/edit_student_info/student_edit_cubit.dart';
+import 'package:gps_advanced_students/features/dashboard/blocs/profile_cubits/student_info_cubit/student_info_cubit.dart';
 import 'package:gps_advanced_students/features/dashboard/presentation/pages/profile/widgets/r_student_info_widget.dart';
+import 'package:gps_advanced_students/features/dashboard/presentation/pages/profile/widgets/student_edit_widget.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 class StudentProfileWidget extends StatefulWidget {
@@ -16,10 +20,11 @@ class StudentProfileWidget extends StatefulWidget {
 
 class _StudentProfileWidgetState extends State<StudentProfileWidget> {
   int stackindex = 0;
+  int containerheight = 550;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 550,
+      height: containerheight.toDouble(),
       padding: const EdgeInsets.only(
         top: 24,
         bottom: 6,
@@ -34,6 +39,7 @@ class _StudentProfileWidgetState extends State<StudentProfileWidget> {
           Radius.circular(6),
         ),
       ),
+      // duration: const Duration(milliseconds: 200),
       child: IndexedStack(
         index: stackindex,
         children: [
@@ -58,8 +64,10 @@ class _StudentProfileWidgetState extends State<StudentProfileWidget> {
                     child: IconButton(
                       onPressed: () {
                         setState(() {
+                          containerheight = 900;
                           stackindex = 1;
                         });
+                        context.read<StudentEditCubit>().onEditStudentprofile();
                       },
                       icon: const Icon(
                         IconsaxPlusLinear.user_edit,
@@ -77,7 +85,7 @@ class _StudentProfileWidgetState extends State<StudentProfileWidget> {
 
           // column for student info edit
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.center,
             // mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(
@@ -96,8 +104,10 @@ class _StudentProfileWidgetState extends State<StudentProfileWidget> {
                     child: IconButton(
                       onPressed: () {
                         setState(() {
+                          containerheight = 550;
                           stackindex = 0;
                         });
+                        context.read<StudentInfoCubit>().onGetStudentInfo();
                       },
                       icon: const Icon(
                         IconsaxPlusLinear.additem,
@@ -106,7 +116,9 @@ class _StudentProfileWidgetState extends State<StudentProfileWidget> {
                     ),
                   )
                 ],
-              )
+              ),
+              const Gap(12),
+              const StudentEditWidget()
             ],
           ),
         ],

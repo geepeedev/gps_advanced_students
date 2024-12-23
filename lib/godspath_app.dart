@@ -9,7 +9,7 @@ import 'package:gps_advanced_students/features/authentication/cubit/authenticati
 import 'package:gps_advanced_students/features/authentication/data/repository/auth_repository.dart';
 import 'package:gps_advanced_students/features/authentication/data/source/auth_datasource.dart';
 import 'package:gps_advanced_students/features/authentication/presentation/pages/login_view.dart';
-import 'package:gps_advanced_students/features/dashboard/blocs/dashboard_cubit/student_info_cubit/student_info_cubit.dart';
+import 'package:gps_advanced_students/features/dashboard/blocs/profile_cubits/student_info_cubit/student_info_cubit.dart';
 import 'package:gps_advanced_students/features/dashboard/data/repository/dashboard_repository.dart';
 import 'package:gps_advanced_students/features/dashboard/data/source/dashboard_datasource.dart';
 import 'package:gps_advanced_students/features/dashboard/presentation/widget/dashboard.dart';
@@ -66,7 +66,7 @@ class GodspathApp extends StatelessWidget {
               ),
               internetChecker: context.read<InternetChecker>(),
             ),
-          )
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

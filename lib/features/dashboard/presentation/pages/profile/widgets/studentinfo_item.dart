@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:gps_advanced_students/core/common/components/text.dart';
 import 'package:gps_advanced_students/core/constants/colors.dart';
 
@@ -25,8 +26,9 @@ class StudentInfoItemWidget extends StatelessWidget {
               fontWeight: FontWeight.normal,
               text: itemLabel,
               textColor: GpColors.onPrimary,
-              fontsize: 18,
+              fontsize: 14,
             ),
+            const Gap(12),
             GpText.headline(
               fontWeight: FontWeight.normal,
               text: jsonData,

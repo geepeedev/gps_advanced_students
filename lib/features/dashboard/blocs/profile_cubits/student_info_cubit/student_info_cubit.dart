@@ -21,11 +21,15 @@ class StudentInfoCubit extends Cubit<StudentInfoState> {
     emit(StudentInfoLoading());
     final localProfile =
         await dashboardRepositoryImpl.getStudentOfflineInfo().run();
-    final onlineProfile =
-        await dashboardRepositoryImpl.getStudentOnlineInfo(user).run();
     final internet = await internetChecker.checkInternetFuture();
 
     if (internet.every((connection) => connection != ConnectivityResult.none)) {
+      localProfile.fold(
+          (error) => debugPrint(error),
+          (profile) async =>
+            await  dashboardRepositoryImpl.updateStudentOnlineInfo(user, profile).run());
+      final onlineProfile =
+          await dashboardRepositoryImpl.getStudentOnlineInfo(user).run();
       onlineProfile.fold(
           (error) => emit(
                 (StudentInfoError(error: error)),
@@ -48,21 +52,17 @@ class StudentInfoCubit extends Cubit<StudentInfoState> {
       );
     }
   }
-//
-  // getProfileInfoFromFirebase(UserModel user) async {
-  //   emit(StudentInfoLoading());
-  //   final internet = await internetChecker.checkInternetFuture();
 
-  //   if (internet.every((connection) => connection != ConnectivityResult.none)) {
-  //     final networkFetch = await dashboardRepositoryImpl.dashboardDatasource
-  //         .getStudentOnlineProfile()
-  //         .run();
-  //     networkFetch.fold((error) => emit(StudentInfoError(error: error)),
-  //         (success) => emit(StudentInfoData(profileInfo: success)));
-  //   } else {
-  //     emit(const StudentInfoError(error: 'Intenet Connection needed'));
-  //   }
-  // }
+  void onGetStudentInfo() async {
+    emit(StudentInfoLoading());
+    final studentprofile =
+        await dashboardRepositoryImpl.getStudentOfflineInfo().run();
+    studentprofile.fold((error) {
+      emit(StudentInfoError(error: error));
+    }, (profile) {
+      emit(StudentInfoData(profileInfo: profile));
+    });
+  }
 
   @override
   void onChange(Change<StudentInfoState> change) {

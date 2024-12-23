@@ -5,7 +5,13 @@ class KHelpers {
     return MediaQuery.of(context).size.width >= 1200;
   }
 
-  // colorsExtension(BuildContext context) {
-  //   return Theme.of(context).extension<GpColors>();
-  // }
+  static Future<DateTime?> selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+        context: context,
+        firstDate: DateTime(1950),
+        lastDate: DateTime(2100),
+        initialDate: DateTime.now());
+
+    return pickedDate;
+  }
 }
